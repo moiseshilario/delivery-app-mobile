@@ -1,13 +1,21 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
+import SignIn from '~/pages/SignIn';
 import Main from '~/pages/Main';
-import Login from '~/pages/Login';
 
-const Routes = createAppContainer(
-  createSwitchNavigator({
-    Login,
-    Main,
-  }),
-);
+function createNavigator(isLoggedIn = false) {
+  console.tron.log('TCL: createNavigator -> isLoggedIn', isLoggedIn);
+  return createAppContainer(
+    createSwitchNavigator(
+      {
+        SignIn,
+        Main,
+      },
+      {
+        initialRouteName: isLoggedIn ? 'Main' : 'SignIn',
+      },
+    ),
+  );
+}
 
-export default Routes;
+export default createNavigator;
