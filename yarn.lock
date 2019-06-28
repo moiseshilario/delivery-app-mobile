@@ -5550,6 +5550,14 @@ react-native-linear-gradient@^2.5.4:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.4.tgz#dce133526f5a5510a639af94544f1ed0c984bd1e"
   integrity sha512-FF1NhlerA4uBiS0gFIHa4FBp8/aftv4vPj14Y47lGNkYjSI94tnI6oYO3EfUxXjEyCUPiOVNKZOB9kScyjc5Ew==
 
+react-native-redux-toast@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-redux-toast/-/react-native-redux-toast-1.0.3.tgz#85c928774d1cd18b0c88689e895f748c2a27d87e"
+  integrity sha512-tToKzAW5XQloJlRD5m/OlKH91qC29CEpG4PNOLrQ1nTJBMlhtVz3nMng9suMASinoaA4w984iFfWPR1heUsQmg==
+  dependencies:
+    prop-types "^15.5.10"
+    seamless-immutable "^7.1.2"
+
 react-native-safe-area-view@^0.14.1:
   version "0.14.4"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.14.4.tgz#1647fa74fd452cb8cee4f47bd08de3829451bf5d"
@@ -6118,6 +6126,11 @@ scheduler@^0.13.3:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+seamless-immutable@^7.1.2:
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/seamless-immutable/-/seamless-immutable-7.1.4.tgz#6e9536def083ddc4dea0207d722e0e80d0f372f8"
+  integrity sha512-XiUO1QP4ki4E2PHegiGAlu6r82o5A+6tRh7IkGGTVg/h+UoeX4nFBeCGPOhb4CYjvkqsfm/TUtvOMYC1xmV30A==
 
 "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.7.0"

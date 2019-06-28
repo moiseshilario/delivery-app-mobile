@@ -29,15 +29,15 @@ export const Actions = {
     type: Types.SIGNIN_ERROR,
   }),
 
-  signupRequest: user => ({
+  signUpRequest: (name, email, password) => ({
     type: Types.SIGNUP_REQUEST,
-    payload: { user },
+    payload: { name, email, password },
   }),
-  signupSuccess: data => ({
+  signUpSuccess: data => ({
     type: Types.SIGNUP_SUCCESS,
     payload: { data },
   }),
-  signupError: () => ({
+  signUpError: () => ({
     type: Types.SIGNUP_ERROR,
   }),
   initCheckSuccess: () => ({
@@ -53,36 +53,27 @@ const INITIAL_STATE = {
   loggedUser: null,
   token: null,
   loading: false,
-  error: null,
 };
 
 export default function auth(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.INIT_CHECK_SUCCESS:
       return { ...state, authChecked: true };
+    case Types.SIGNUP_REQUEST:
     case Types.SIGNIN_REQUEST:
-      return { ...state, loading: true, error: null };
+      return { ...state, loading: true };
     case Types.SIGNIN_SUCCESS:
       return {
         ...state,
         loggedUser: action.payload.data.user,
         token: action.payload.data.token,
         loading: false,
-        error: null,
       };
-    case Types.SIGNIN_ERROR:
-      return { ...state, loading: false, error: true };
-    case Types.SIGNUP_REQUEST:
-      return { ...state, loading: true, error: null };
     case Types.SIGNUP_SUCCESS:
-      return {
-        ...state,
-        token: action.payload.payload.token,
-        loading: false,
-        error: null,
-      };
+      return { ...state, loading: false };
     case Types.SIGNUP_ERROR:
-      return { ...state, loading: false, error: true };
+    case Types.SIGNIN_ERROR:
+      return { ...state, loading: false };
     default:
       return state;
   }

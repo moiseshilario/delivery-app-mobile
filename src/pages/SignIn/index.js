@@ -22,14 +22,25 @@ import {
 import backgroundImage from '~/assets/background.png';
 import logo from '~/assets/logo.png';
 
-const SignIn = ({ signInRequest, loading }) => {
+const SignIn = ({ signInRequest, signUpRequest, loading }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginActive, setLoginActive] = useState(true);
+
   let passwordInput;
+  let emailInput;
 
   const handleSubmit = () => {
-    signInRequest(email, password);
+    if (loginActive) {
+      signInRequest(email, password);
+    } else {
+      console.tron.log('========SIGNUP=======');
+      signUpRequest(name, email, password);
+    }
   };
+
+  const toggleLoginActive = () => setLoginActive(!loginActive);
 
   return (
     <Container behavior={Platform.OS === 'ios' ? 'padding' : null}>
@@ -37,6 +48,20 @@ const SignIn = ({ signInRequest, loading }) => {
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
         <LinearGradient colors={['transparent', '#000']} style={styles.linearGradient}>
           <Logo source={logo} />
+          {!loginActive && (
+            <Input
+              autoCapitalize="words"
+              autoCorrect={false}
+              underlineColorAndroid="transparent"
+              autoFocus
+              returnKeyType="next"
+              placeholder="Nome Completo"
+              onSubmitEditing={() => emailInput.focus()}
+              onChangeText={text => setName(text)}
+              value={name}
+            />
+          )}
+
           <Input
             keyboardType="email-address"
             autoCapitalize="none"
@@ -48,6 +73,9 @@ const SignIn = ({ signInRequest, loading }) => {
             onSubmitEditing={() => passwordInput.focus()}
             onChangeText={text => setEmail(text)}
             value={email}
+            ref={(e) => {
+              emailInput = e;
+            }}
           />
           <Input
             secureTextEntry
@@ -65,11 +93,19 @@ const SignIn = ({ signInRequest, loading }) => {
           />
 
           <Button onPress={handleSubmit}>
-            {loading ? <ActivityIndicator /> : <ButtonText>Entrar</ButtonText>}
+            {loading ? (
+              <ActivityIndicator />
+            ) : (
+              <ButtonText>{loginActive ? 'Entrar' : 'Criar conta'}</ButtonText>
+            )}
           </Button>
 
           <TouchableOpacity activeOpacity={0.6}>
-            <SignupText>Criar conta gratuita</SignupText>
+            {loginActive ? (
+              <SignupText onPress={toggleLoginActive}>Criar conta gratuita</SignupText>
+            ) : (
+              <SignupText onPress={toggleLoginActive}>Já tenho login</SignupText>
+            )}
           </TouchableOpacity>
         </LinearGradient>
       </ImageBackground>
@@ -92,6 +128,8 @@ const styles = StyleSheet.create({
 
 SignIn.propTypes = {
   signInRequest: PropTypes.func.isRequired,
+  signUpRequest: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
