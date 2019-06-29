@@ -35,7 +35,6 @@ const SignIn = ({ signInRequest, signUpRequest, loading }) => {
     if (loginActive) {
       signInRequest(email, password);
     } else {
-      console.tron.log('========SIGNUP=======');
       signUpRequest(name, email, password);
     }
   };

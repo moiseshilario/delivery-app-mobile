@@ -75,7 +75,7 @@ async function storeAsync(name, item) {
   try {
     await AsyncStorage.setItem(name, item);
   } catch (error) {
-    console.tron.log(`AsyncStorage error during ${name} store:`, error);
+    // console.tron.log(`AsyncStorage error during ${name} store:`, error);
   }
 }
 
@@ -84,7 +84,7 @@ async function getAsync(item) {
     const data = await AsyncStorage.getItem(item);
     return data;
   } catch (error) {
-    console.tron.log(`AsyncStorage error during ${item} get:`, error);
+    // console.tron.log(`AsyncStorage error during ${item} get:`, error);
     return null;
   }
 }
