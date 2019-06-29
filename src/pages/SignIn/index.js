@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Platform, StatusBar, ActivityIndicator } from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as AuthActions } from '../../store/ducks/auth';
 
 import {
-  Platform,
-  StyleSheet,
-  ImageBackground,
-  TouchableOpacity,
-  StatusBar,
-  ActivityIndicator,
-} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-
-import {
-  Container, Input, Button, Logo, ButtonText, SignupText,
+  Container,
+  BackgroundContainer,
+  Gradient,
+  Logo,
+  Input,
+  Button,
+  ButtonText,
+  SwitchButton,
+  SwitchButtonText,
 } from './styles';
-
-import backgroundImage from '~/assets/background.png';
-import logo from '~/assets/logo.png';
 
 const SignIn = ({ signInRequest, signUpRequest, loading }) => {
   const [name, setName] = useState('');
@@ -44,9 +40,9 @@ const SignIn = ({ signInRequest, signUpRequest, loading }) => {
   return (
     <Container behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <StatusBar barStyle="light-content" />
-      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        <LinearGradient colors={['transparent', '#000']} style={styles.linearGradient}>
-          <Logo source={logo} />
+      <BackgroundContainer>
+        <Gradient>
+          <Logo />
           {!loginActive && (
             <Input
               autoCapitalize="words"
@@ -99,31 +95,18 @@ const SignIn = ({ signInRequest, signUpRequest, loading }) => {
             )}
           </Button>
 
-          <TouchableOpacity activeOpacity={0.6}>
+          <SwitchButton onPress={toggleLoginActive}>
             {loginActive ? (
-              <SignupText onPress={toggleLoginActive}>Criar conta gratuita</SignupText>
+              <SwitchButtonText>Criar conta gratuita</SwitchButtonText>
             ) : (
-              <SignupText onPress={toggleLoginActive}>Já tenho login</SignupText>
+              <SwitchButtonText>Já tenho login</SwitchButtonText>
             )}
-          </TouchableOpacity>
-        </LinearGradient>
-      </ImageBackground>
+          </SwitchButton>
+        </Gradient>
+      </BackgroundContainer>
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  linearGradient: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 30,
-  },
-  backgroundImage: {
-    width: '100%',
-    height: '100%',
-  },
-});
 
 SignIn.propTypes = {
   signInRequest: PropTypes.func.isRequired,
