@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import api from '~/services/api';
 
-import { Text } from 'react-native';
 import { Container, Content, List } from './styles';
 
 import Header from '~/components/Header';
+import Product from '~/components/Product';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -17,6 +17,10 @@ const Products = () => {
     getProducts();
   }, []);
 
+  const onPressProduct = (id) => {
+    console.tron.log('product id', id);
+  };
+
   return (
     <Container>
       <Header title="Pizzaria Don Juan" />
@@ -24,7 +28,7 @@ const Products = () => {
         <List
           data={products}
           keyExtractor={product => String(product.id)}
-          renderItem={({ item: product }) => <Text>{product.name}</Text>}
+          renderItem={({ item }) => <Product product={item} onPress={onPressProduct} />}
         />
       </Content>
     </Container>

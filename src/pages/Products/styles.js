@@ -11,5 +11,9 @@ export const Content = styled.View`
 `;
 
 export const List = styled.FlatList.attrs({
-  contentContainerStyle: { paddingTop: getStatusBarHeight() + 30, paddingBottom: 30 },
+  contentContainerStyle: {
+    paddingTop: 0,
+    paddingBottom: 30,
+    overflow: 'visible',
+  },
 })``;
