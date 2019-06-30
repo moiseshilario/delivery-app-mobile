@@ -3,7 +3,7 @@ import api from '~/services/api';
 
 import { Container, Content, List } from './styles';
 
-import Header from '~/components/Header';
+import ProductHeader from '~/components/ProductHeader';
 import Product from '~/components/Product';
 
 const Products = () => {
@@ -23,7 +23,7 @@ const Products = () => {
 
   return (
     <Container>
-      <Header title="Pizzaria Don Juan" />
+      <ProductHeader />
       <Content>
         <List
           data={products}
