@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { menuTypes } from '~/services/menuTypes';
-import { navigate } from '~/services/navigation';
+// import { navigate } from '~/services/navigation';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,37 +11,39 @@ import { Actions as MenuActions } from '../../store/ducks/menu';
 import { Container, Content, List } from './styles';
 
 import ProductHeader from '~/components/ProductHeader';
-import Product from '~/components/Product';
+// import Product from '~/components/Product';
 
-const Products = ({ products, menuRequest }) => {
+const Types = ({ types, menuRequest, navigation }) => {
   useEffect(() => {
-    const getProducts = async () => {
-      await menuRequest(menuTypes.PRODUCTS);
+    const getTypes = async () => {
+      console.log('TCL: getTypes -> navigation', navigation);
+      const productId = navigation.getParam('productId');
+      await menuRequest(menuTypes.TYPES, productId);
     };
-    getProducts();
+    getTypes();
   }, []);
 
-  const onPressProduct = (id) => {
-    console.tron.log('product id', id);
-    navigate('Types', { productId: id });
-  };
+  // const onPressProduct = (id) => {
+  //   console.tron.log('product id', id);
+  //   navigate('Types', { productId: id });
+  // };
 
   return (
     <Container>
       <ProductHeader />
       <Content>
         <List
-          data={products}
+          data={types}
           keyExtractor={product => String(product.id)}
-          renderItem={({ item }) => <Product product={item} onPress={onPressProduct} />}
+          renderItem={({ item }) => <Text>{item.name}</Text>}
         />
       </Content>
     </Container>
   );
 };
 
-Products.propTypes = {
-  products: PropTypes.arrayOf({
+Types.propTypes = {
+  types: PropTypes.arrayOf({
     product: PropTypes.shape({
       id: PropTypes.number,
     }),
@@ -49,7 +52,7 @@ Products.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  products: state.menu.products,
+  types: state.menu.types,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(MenuActions, dispatch);
@@ -57,4 +60,4 @@ const mapDispatchToProps = dispatch => bindActionCreators(MenuActions, dispatch)
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Products);
+)(Types);

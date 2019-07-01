@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropType from 'prop-types';
 import { imagesURL } from '~/services/api';
 
