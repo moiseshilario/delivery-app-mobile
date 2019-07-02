@@ -3,6 +3,7 @@ import { createAppContainer, createSwitchNavigator, createStackNavigator } from 
 import SignIn from '~/pages/SignIn';
 import Products from '~/pages/Products';
 import Types from '~/pages/Types';
+import SizePrices from '~/pages/SizePrices';
 
 function createNavigator(isLoggedIn = false) {
   return createAppContainer(
@@ -13,6 +14,7 @@ function createNavigator(isLoggedIn = false) {
           {
             Products,
             Types,
+            SizePrices,
           },
           {
             defaultNavigationOptions: {
