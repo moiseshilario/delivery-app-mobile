@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import Icon from 'react-native-vector-icons/EvilIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const Container = styled.View`
   padding: 15px;
@@ -51,9 +51,9 @@ export const TimeContainer = styled.View`
 `;
 
 export const TimeIcon = styled(Icon).attrs({
-  name: 'clock',
+  name: 'alarm',
   color: '#aaa',
-  size: 20,
+  size: 18,
 })``;
 
 export const TimeText = styled.Text`
@@ -62,5 +62,4 @@ export const TimeText = styled.Text`
   font-size: 10px;
   color: #706e7b;
   letter-spacing: 0.46px;
-  text-align: left;
 `;

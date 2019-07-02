@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const Container = styled.View`
   flex: 1;
@@ -12,8 +11,17 @@ export const Content = styled.View`
 
 export const List = styled.FlatList.attrs({
   contentContainerStyle: {
-    paddingTop: 0,
     paddingBottom: 30,
-    overflow: 'visible',
+    alignItems: 'center',
+  },
+  columnWrapper: {
+    marginHorizontal: 10,
+    justifyContent: 'space-between',
   },
 })``;
+
+export const NotAvailableContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;

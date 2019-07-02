@@ -1,54 +1,68 @@
 import React, { useEffect } from 'react';
-import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { menuTypes } from '~/services/menuTypes';
-// import { navigate } from '~/services/navigation';
+import { navigate } from '~/services/navigation';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as MenuActions } from '../../store/ducks/menu';
 
-import { Container, Content, List } from './styles';
+import { Text } from 'react-native';
+import {
+  Container, Content, List, NotAvailableContainer,
+} from './styles';
 
-import ProductHeader from '~/components/ProductHeader';
-// import Product from '~/components/Product';
+import Header from '~/components/Header';
+import Type from '~/components/Type';
 
 const Types = ({ types, menuRequest, navigation }) => {
   useEffect(() => {
     const getTypes = async () => {
-      console.log('TCL: getTypes -> navigation', navigation);
       const productId = navigation.getParam('productId');
       await menuRequest(menuTypes.TYPES, productId);
     };
     getTypes();
   }, []);
 
-  // const onPressProduct = (id) => {
-  //   console.tron.log('product id', id);
-  //   navigate('Types', { productId: id });
-  // };
+  const onPressType = (id) => {
+    navigate('Types', { typeId: id });
+  };
+
+  const onPressBack = () => {
+    navigation.pop();
+  };
 
   return (
     <Container>
-      <ProductHeader />
+      <Header title="Selecione um tipo" onPressBack={onPressBack} />
       <Content>
-        <List
-          data={types}
-          keyExtractor={product => String(product.id)}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
-        />
+        {types.length > 0 ? (
+          <List
+            data={types}
+            keyExtractor={type => String(type.id)}
+            renderItem={({ item }) => <Type type={item} onPress={onPressType} />}
+            numColumns={2}
+          />
+        ) : (
+          <NotAvailableContainer>
+            <Text>Não disponível no momento</Text>
+          </NotAvailableContainer>
+        )}
       </Content>
     </Container>
   );
 };
 
 Types.propTypes = {
-  types: PropTypes.arrayOf({
-    product: PropTypes.shape({
+  types: PropTypes.arrayOf(
+    PropTypes.shape({
       id: PropTypes.number,
     }),
-  }).isRequired,
+  ).isRequired,
   menuRequest: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({
+    getParam: PropTypes.func,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

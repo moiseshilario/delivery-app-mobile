@@ -37,7 +37,11 @@ const INITIAL_STATE = {
 export default function menu(state = INITIAL_STATE, { type, payload }) {
   switch (type) {
     case Types.MENU_REQUEST:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        [payload.menuType]: [],
+        loading: true,
+      };
     case Types.MENU_SUCCESS:
       return {
         ...state,

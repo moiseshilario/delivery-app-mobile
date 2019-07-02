@@ -21,7 +21,6 @@ const Products = ({ products, menuRequest }) => {
   }, []);
 
   const onPressProduct = (id) => {
-    console.tron.log('product id', id);
     navigate('Types', { productId: id });
   };
 
@@ -40,11 +39,11 @@ const Products = ({ products, menuRequest }) => {
 };
 
 Products.propTypes = {
-  products: PropTypes.arrayOf({
-    product: PropTypes.shape({
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
       id: PropTypes.number,
     }),
-  }).isRequired,
+  ).isRequired,
   menuRequest: PropTypes.func.isRequired,
 };
 
