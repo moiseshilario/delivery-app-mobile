@@ -13,7 +13,7 @@ export function* loadMenu(action) {
 
     yield put(MenuActions.menuSuccess(menuType, data));
   } catch (err) {
-    yield put(MenuActions.signInError());
+    yield put(MenuActions.menuError());
     yield put(ToastActionsCreators.displayError('Não foi possível carregar os dados do menu'));
   }
 }

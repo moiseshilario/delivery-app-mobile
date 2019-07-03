@@ -1,15 +1,17 @@
 import { call, put } from 'redux-saga/effects';
 import api from '~/services/api';
-import AsyncStorage from '@react-native-community/async-storage';
 import { ToastActionsCreators } from 'react-native-redux-toast';
 import { navigate } from '~/services/navigation';
+import { getItemAsync, setItemAsync } from '~/services/asyncStorage';
 
 import { Actions as AuthActions } from '../ducks/auth';
 
+import { initCart } from './cart';
+
 export function* init() {
   // AsyncStorage.clear();
-  const token = yield call(getAsync, '@DeliveryApp:token');
-  let user = yield call(getAsync, '@DeliveryApp:user');
+  const token = yield call(getItemAsync, '@DeliveryApp:token');
+  let user = yield call(getItemAsync, '@DeliveryApp:user');
 
   if (token && user) {
     user = JSON.parse(user);
@@ -17,6 +19,7 @@ export function* init() {
   }
 
   yield put(AuthActions.initCheckSuccess());
+  yield call(initCart);
 }
 
 export function* signIn(action) {
@@ -40,8 +43,8 @@ export function* signIn(action) {
       token,
     };
 
-    yield call(storeAsync, '@DeliveryApp:token', authData.token);
-    yield call(storeAsync, '@DeliveryApp:user', JSON.stringify(authData.user));
+    yield call(setItemAsync, '@DeliveryApp:token', authData.token);
+    yield call(setItemAsync, '@DeliveryApp:user', JSON.stringify(authData.user));
 
     yield put(AuthActions.signInSuccess(authData));
 
@@ -62,29 +65,5 @@ export function* signUp(action) {
   } catch (err) {
     yield put(AuthActions.signUpError());
     yield put(ToastActionsCreators.displayError('Erro'));
-  }
-}
-
-export function* signOut() {
-  yield call([AsyncStorage, 'clear']);
-
-  // yield put(push('/signin'));
-}
-
-async function storeAsync(name, item) {
-  try {
-    await AsyncStorage.setItem(name, item);
-  } catch (error) {
-    // console.tron.log(`AsyncStorage error during ${name} store:`, error);
-  }
-}
-
-async function getAsync(item) {
-  try {
-    const data = await AsyncStorage.getItem(item);
-    return data;
-  } catch (error) {
-    // console.tron.log(`AsyncStorage error during ${item} get:`, error);
-    return null;
   }
 }

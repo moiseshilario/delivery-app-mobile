@@ -6,8 +6,10 @@ import { navigate } from '~/services/navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as MenuActions } from '../../store/ducks/menu';
+import { Actions as CartActions } from '../../store/ducks/cart';
+import { ToastActionsCreators } from 'react-native-redux-toast';
 
-import { Text } from 'react-native';
+import { Text, ActivityIndicator } from 'react-native';
 import {
   Container, Content, List, NotAvailableContainer,
 } from './styles';
@@ -15,21 +17,31 @@ import {
 import Header from '~/components/Header';
 import SizePrice from '~/components/SizePrice';
 
-const SizePrices = ({ prices, menuRequest, navigation }) => {
+const SizePrices = ({
+  prices,
+  menuRequest,
+  addStep,
+  removeStep,
+  addItemRequest,
+  loading,
+  navigation,
+}) => {
   useEffect(() => {
     const getSizePrices = async () => {
       const typeId = navigation.getParam('typeId');
-      console.tron.log('TCL: getSizePrices -> typeId', typeId);
       await menuRequest(menuTypes.PRICES, typeId);
     };
     getSizePrices();
   }, []);
 
-  const onPressSizePrice = (id) => {
-    // navigate('SizePrices', { typeId: id });
+  const onPressSizePrice = async (id) => {
+    addStep('price', prices.find(price => price.id === id));
+
+    addItemRequest();
   };
 
   const onPressBack = () => {
+    removeStep('price');
     navigation.pop();
   };
 
@@ -49,6 +61,7 @@ const SizePrices = ({ prices, menuRequest, navigation }) => {
             <Text>Indisponível</Text>
           </NotAvailableContainer>
         )}
+        {loading && <ActivityIndicator />}
       </Content>
     </Container>
   );
@@ -60,7 +73,11 @@ SizePrices.propTypes = {
       id: PropTypes.number,
     }),
   ).isRequired,
+  loading: PropTypes.bool.isRequired,
   menuRequest: PropTypes.func.isRequired,
+  addStep: PropTypes.func.isRequired,
+  addItemRequest: PropTypes.func.isRequired,
+  removeStep: PropTypes.func.isRequired,
   navigation: PropTypes.shape({
     getParam: PropTypes.func,
   }).isRequired,
@@ -68,9 +85,16 @@ SizePrices.propTypes = {
 
 const mapStateToProps = state => ({
   prices: state.menu.prices,
+  loading: state.cart.loading,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(MenuActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    ...MenuActions,
+    ...CartActions,
+  },
+  dispatch,
+);
 
 export default connect(
   mapStateToProps,

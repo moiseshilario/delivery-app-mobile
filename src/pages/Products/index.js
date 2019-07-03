@@ -6,13 +6,14 @@ import { navigate } from '~/services/navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as MenuActions } from '../../store/ducks/menu';
+import { Actions as CartActions } from '../../store/ducks/cart';
 
 import { Container, Content, List } from './styles';
 
 import ProductHeader from '~/components/ProductHeader';
 import Product from '~/components/Product';
 
-const Products = ({ products, menuRequest }) => {
+const Products = ({ products, menuRequest, addStep }) => {
   useEffect(() => {
     const getProducts = async () => {
       await menuRequest(menuTypes.PRODUCTS);
@@ -21,6 +22,7 @@ const Products = ({ products, menuRequest }) => {
   }, []);
 
   const onPressProduct = (id) => {
+    addStep('product', products.find(product => product.id === id));
     navigate('Types', { productId: id });
   };
 
@@ -45,13 +47,20 @@ Products.propTypes = {
     }),
   ).isRequired,
   menuRequest: PropTypes.func.isRequired,
+  addStep: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   products: state.menu.products,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(MenuActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    ...MenuActions,
+    ...CartActions,
+  },
+  dispatch,
+);
 
 export default connect(
   mapStateToProps,
