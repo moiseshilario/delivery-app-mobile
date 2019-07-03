@@ -13,7 +13,9 @@ import { Container, Content, List } from './styles';
 import ProductHeader from '~/components/ProductHeader';
 import Product from '~/components/Product';
 
-const Products = ({ products, menuRequest, addStep }) => {
+const Products = ({
+  products, cartItems, menuRequest, addStep,
+}) => {
   useEffect(() => {
     const getProducts = async () => {
       await menuRequest(menuTypes.PRODUCTS);
@@ -28,7 +30,7 @@ const Products = ({ products, menuRequest, addStep }) => {
 
   return (
     <Container>
-      <ProductHeader />
+      <ProductHeader cartItems={cartItems} />
       <Content>
         <List
           data={products}
@@ -46,12 +48,14 @@ Products.propTypes = {
       id: PropTypes.number,
     }),
   ).isRequired,
+  cartItems: PropTypes.number.isRequired,
   menuRequest: PropTypes.func.isRequired,
   addStep: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   products: state.menu.products,
+  cartItems: state.cart.items.length,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(

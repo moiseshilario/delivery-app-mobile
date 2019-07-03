@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import { StatusBar, TouchableOpacity } from 'react-native';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
@@ -10,7 +11,7 @@ import {
 
 import headerBg from '~/assets/header-background.png';
 
-const ProductHeader = () => {
+const ProductHeader = ({ cartItems }) => {
   const onPressHistory = () => {};
   const onPressCart = () => {};
   return (
@@ -24,7 +25,7 @@ const ProductHeader = () => {
           <Title>Pizzaria Don Juan</Title>
           <Cart onPress={onPressCart}>
             <CounterContainer>
-              <CounterText>1</CounterText>
+              {!!cartItems && <CounterText>{cartItems}</CounterText>}
             </CounterContainer>
             <SIcon name="handbag" size={20} color="#fff" />
           </Cart>
@@ -33,4 +34,9 @@ const ProductHeader = () => {
     </Fragment>
   );
 };
+
+ProductHeader.propTypes = {
+  cartItems: PropTypes.number.isRequired,
+};
+
 export default ProductHeader;
