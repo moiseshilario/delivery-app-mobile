@@ -38,9 +38,13 @@ export const Actions = {
     type: Types.ADD_ITEM_SUCCESS,
     payload: { data },
   }),
-  removeItem: item => ({
-    type: Types.REMOVE_STEP,
-    payload: { item },
+  removeItemRequest: itemId => ({
+    type: Types.REMOVE_ITEM_REQUEST,
+    payload: { itemId },
+  }),
+  removeItemSuccess: itemId => ({
+    type: Types.REMOVE_ITEM_SUCCESS,
+    payload: { itemId },
   }),
   setOrderId: orderId => ({
     type: Types.SET_ORDER_ID,
@@ -100,6 +104,10 @@ export default function menu(state = INITIAL_STATE, { type, payload }) {
         items: [...state.items, payload.data],
         currentItem: INITIAL_STATE.currentItem,
       };
+    case Types.REMOVE_ITEM_REQUEST:
+      return { ...state, loading: true };
+    case Types.REMOVE_ITEM_SUCCESS:
+      return { ...state, items: state.items.filter(item => item.id !== payload.itemId) };
     case Types.ERROR:
       return { ...state, loading: false };
     default:

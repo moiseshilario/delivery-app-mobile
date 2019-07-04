@@ -10,9 +10,7 @@ import {
 const Type = ({ type, onPress }) => (
   <Container>
     <Button onPress={() => onPress(type.id)}>
-      {type.images.length > 0 && (
-        <Image source={{ uri: `${imagesURL}/${getTypeImage(type.images)}` }} />
-      )}
+      {!!type.image && <Image source={{ uri: `${imagesURL}/${type.image}` }} />}
       <Title>{type.name}</Title>
     </Button>
   </Container>

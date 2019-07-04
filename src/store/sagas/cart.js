@@ -32,23 +32,31 @@ export function* initCart() {
 }
 
 export function* addItem() {
-  const { userId } = yield select(getUser);
   const currentItem = yield select(getCurrentItem);
-  let currentOrderId = yield select(getOrderId);
+  const currentOrderId = yield select(getOrderId);
 
   try {
-    if (!currentOrderId) {
-      const { data } = yield call(api.get, `users/${userId}/cart`);
-      currentOrderId = data.id;
-      yield put(CartActions.setOrderId(currentOrderId));
-    }
-
     const { data } = yield call(api.post, `orders/${currentOrderId}/items`, currentItem);
     yield put(CartActions.addItemSuccess(data));
 
-    yield put(ToastActionsCreators.displayInfo('Producto adicionado ao carrinho!'));
+    yield put(ToastActionsCreators.displayInfo('Produto adicionado ao carrinho!'));
 
     navigate('Products');
+  } catch (err) {
+    yield put(CartActions.error());
+    yield put(
+      ToastActionsCreators.displayError('Não foi possível adicionar o produto no carrinho'),
+    );
+  }
+}
+
+export function* removeItem(action) {
+  const { itemId } = action.payload;
+  const currentOrderId = yield select(getOrderId);
+
+  try {
+    yield call(api.delete, `/orders/${currentOrderId}/items/${itemId}`);
+    yield put(CartActions.removeItemSuccess(itemId));
   } catch (err) {
     yield put(CartActions.error());
     yield put(

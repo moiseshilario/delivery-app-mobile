@@ -11,32 +11,30 @@ import {
 
 import headerBg from '~/assets/header-background.png';
 
-const ProductHeader = ({ cartItems }) => {
-  const onPressHistory = () => {};
-  const onPressCart = () => {};
-  return (
-    <Fragment>
-      <StatusBar barStyle="light-content" />
-      <Container source={headerBg}>
-        <HeaderContent>
-          <TouchableOpacity onPress={onPressHistory}>
-            <MIcon name="history" size={30} color="#fff" />
-          </TouchableOpacity>
-          <Title>Pizzaria Don Juan</Title>
-          <Cart onPress={onPressCart}>
-            <CounterContainer>
-              {!!cartItems && <CounterText>{cartItems}</CounterText>}
-            </CounterContainer>
-            <SIcon name="handbag" size={20} color="#fff" />
-          </Cart>
-        </HeaderContent>
-      </Container>
-    </Fragment>
-  );
-};
+const ProductHeader = ({ cartItems, onPressCart, onPressHistory }) => (
+  <Fragment>
+    <StatusBar barStyle="light-content" />
+    <Container source={headerBg}>
+      <HeaderContent>
+        <TouchableOpacity onPress={onPressHistory}>
+          <MIcon name="history" size={30} color="#fff" />
+        </TouchableOpacity>
+        <Title>Pizzaria Don Juan</Title>
+        <Cart onPress={onPressCart}>
+          <CounterContainer>
+            {!!cartItems && <CounterText>{cartItems}</CounterText>}
+          </CounterContainer>
+          <SIcon name="handbag" size={20} color="#fff" />
+        </Cart>
+      </HeaderContent>
+    </Container>
+  </Fragment>
+);
 
 ProductHeader.propTypes = {
   cartItems: PropTypes.number.isRequired,
+  onPressCart: PropTypes.func.isRequired,
+  onPressHistory: PropTypes.func.isRequired,
 };
 
 export default ProductHeader;
