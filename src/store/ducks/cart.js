@@ -14,7 +14,13 @@ export const Types = {
   SET_ORDER_ID: 'cart/SET_ORDER_ID',
   SET_ITEMS: 'cart/SET_ITEMS',
 
+  CONFIRM_ORDER_REQUEST: 'cart/CONFIRM_ORDER_REQUEST',
+  CONFIRM_ORDER_SUCCESS: 'cart/CONFIRM_ORDER_SUCCESS',
+
   INIT_CHECK_SUCCESS: 'cart/INIT_CHECK_SUCCESS',
+
+  GET_ORDERS_REQUEST: 'cart/GET_ORDERS_REQUEST',
+  GET_ORDERS_SUCCESS: 'cart/GET_ORDER_SSUCCESS',
 
   ERROR: 'cart/ERROR',
 };
@@ -60,6 +66,20 @@ export const Actions = {
   initCheckSuccess: () => ({
     type: Types.INIT_CHECK_SUCCESS,
   }),
+  confirmOrderRequest: (form, total) => ({
+    type: Types.CONFIRM_ORDER_REQUEST,
+    payload: { form, total },
+  }),
+  confirmOrderSuccess: () => ({
+    type: Types.CONFIRM_ORDER_SUCCESS,
+  }),
+  getOrdersRequest: () => ({
+    type: Types.GET_ORDERS_REQUEST,
+  }),
+  getOrdersSuccess: data => ({
+    type: Types.GET_ORDERS_SUCCESS,
+    payload: { data },
+  }),
 };
 
 /**
@@ -75,6 +95,7 @@ const INITIAL_STATE = {
   },
   items: [],
   total: null,
+  orders: [],
   loading: false,
 };
 
@@ -97,6 +118,8 @@ export default function menu(state = INITIAL_STATE, { type, payload }) {
         currentItem: { ...state.currentItem, [payload.step]: null },
       };
     case Types.ADD_ITEM_REQUEST:
+    case Types.REMOVE_ITEM_REQUEST:
+    case Types.CONFIRM_ORDER_REQUEST:
       return { ...state, loading: true };
     case Types.ADD_ITEM_SUCCESS:
       return {
@@ -104,10 +127,12 @@ export default function menu(state = INITIAL_STATE, { type, payload }) {
         items: [...state.items, payload.data],
         currentItem: INITIAL_STATE.currentItem,
       };
-    case Types.REMOVE_ITEM_REQUEST:
-      return { ...state, loading: true };
     case Types.REMOVE_ITEM_SUCCESS:
       return { ...state, items: state.items.filter(item => item.id !== payload.itemId) };
+    case Types.CONFIRM_ORDER_SUCCESS:
+      return { ...INITIAL_STATE };
+    case Types.GET_ORDERS_SUCCESS:
+      return { ...state, orders: payload.data };
     case Types.ERROR:
       return { ...state, loading: false };
     default:

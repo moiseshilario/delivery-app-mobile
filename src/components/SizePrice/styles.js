@@ -26,8 +26,8 @@ export const Button = styled.TouchableOpacity.attrs({
 export const ImageContainer = styled.View`
   align-items: center;
   justify-content: center;
-  height: 110px;
-  width: 110px;
+  height: 130px;
+  width: 130px;
 `;
 
 export const SizeImage = styled.Image.attrs({
@@ -35,14 +35,13 @@ export const SizeImage = styled.Image.attrs({
 })`
   width: ${({ imgWidth }) => `${imgWidth}px`};
   height: ${({ imgHeight }) => `${imgHeight}px`};
-  max-width: 110px;
+  max-width: 130px;
 `;
 
 export const Title = styled.Text`
   font-family: Helvetica-Bold;
   font-size: 16px;
   color: #0b2031;
-  margin-top: 16px;
 `;
 
 export const Price = styled.Text`
@@ -50,4 +49,5 @@ export const Price = styled.Text`
   font-size: 16px;
   color: #0b2031;
   opacity: 0.6;
+  margin-top: 5px;
 `;
