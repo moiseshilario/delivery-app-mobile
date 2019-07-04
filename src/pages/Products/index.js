@@ -28,9 +28,17 @@ const Products = ({
     navigate('Types', { productId: id });
   };
 
+  const onPressCart = () => navigate('Cart');
+
+  const onPressHistory = () => {};
+
   return (
     <Container>
-      <ProductHeader cartItems={cartItems} />
+      <ProductHeader
+        cartItems={cartItems}
+        onPressCart={onPressCart}
+        onPressHistory={onPressHistory}
+      />
       <Content>
         <List
           data={products}
