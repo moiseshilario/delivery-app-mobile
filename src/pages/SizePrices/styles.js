@@ -12,7 +12,7 @@ export const Content = styled.View`
 export const List = styled.FlatList.attrs({
   contentContainerStyle: {
     paddingBottom: 30,
-    alignItems: 'center',
+    paddingHorizontal: 10,
   },
   columnWrapper: {
     marginHorizontal: 10,
