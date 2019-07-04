@@ -8,16 +8,15 @@ import {
   Container, OrderNumber, Time, Total,
 } from './styles';
 
-const CartItem = ({ item, index }) => {
-  moment.updateLocale('pt-br', br);
-  return (
-    <Container>
-      <OrderNumber>{`Pedido #${index}`}</OrderNumber>
-      <Time>{moment(item.updatedAt).fromNow()}</Time>
-      <Total>{`R$${item.total.toFixed(2)}`}</Total>
-    </Container>
-  );
-};
+moment.updateLocale('pt-br', br);
+
+const CartItem = ({ item, index }) => (
+  <Container>
+    <OrderNumber>{`Pedido #${index}`}</OrderNumber>
+    <Time>{moment(item.updatedAt).fromNow()}</Time>
+    <Total>{`R$${item.total.toFixed(2)}`}</Total>
+  </Container>
+);
 
 CartItem.propTypes = {
   item: PropType.shape({

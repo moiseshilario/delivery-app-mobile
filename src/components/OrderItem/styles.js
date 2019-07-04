@@ -24,6 +24,7 @@ export const Time = styled.Text`
   color: #706e7b;
   line-height: 14px;
   margin: 5px 0;
+  text-transform: capitalize;
 `;
 
 export const Total = styled.Text`
