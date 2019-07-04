@@ -6,6 +6,7 @@ import Types from '~/pages/Types';
 import SizePrices from '~/pages/SizePrices';
 import Cart from '~/pages/Cart';
 import Checkout from '~/pages/Checkout';
+import Orders from '~/pages/Orders';
 
 function createNavigator(isLoggedIn = false) {
   return createAppContainer(
@@ -19,6 +20,7 @@ function createNavigator(isLoggedIn = false) {
             SizePrices,
             Cart,
             Checkout,
+            Orders,
           },
           {
             defaultNavigationOptions: {

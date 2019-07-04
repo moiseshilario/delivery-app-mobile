@@ -30,14 +30,14 @@ const Products = ({
 
   const onPressCart = () => navigate('Cart');
 
-  const onPressHistory = () => {};
+  const onPressOrders = () => navigate('Orders');
 
   return (
     <Container>
       <ProductHeader
         cartItems={cartItems}
         onPressCart={onPressCart}
-        onPressHistory={onPressHistory}
+        onPressOrders={onPressOrders}
       />
       <Content>
         <List

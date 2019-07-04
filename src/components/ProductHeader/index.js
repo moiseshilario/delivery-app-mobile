@@ -11,12 +11,12 @@ import {
 
 import headerBg from '~/assets/header-background.png';
 
-const ProductHeader = ({ cartItems, onPressCart, onPressHistory }) => (
+const ProductHeader = ({ cartItems, onPressCart, onPressOrders }) => (
   <Fragment>
     <StatusBar barStyle="light-content" />
     <Container source={headerBg}>
       <HeaderContent>
-        <TouchableOpacity onPress={onPressHistory}>
+        <TouchableOpacity onPress={onPressOrders}>
           <MIcon name="history" size={30} color="#fff" />
         </TouchableOpacity>
         <Title>Pizzaria Don Juan</Title>
@@ -34,7 +34,7 @@ const ProductHeader = ({ cartItems, onPressCart, onPressHistory }) => (
 ProductHeader.propTypes = {
   cartItems: PropTypes.number.isRequired,
   onPressCart: PropTypes.func.isRequired,
-  onPressHistory: PropTypes.func.isRequired,
+  onPressOrders: PropTypes.func.isRequired,
 };
 
 export default ProductHeader;
