@@ -7,7 +7,16 @@ import { Actions as CartActions } from '../../store/ducks/cart';
 
 import { Text } from 'react-native';
 import {
-  Container, Content, List, NotAvailableContainer,
+  Container,
+  Content,
+  List,
+  NotAvailableContainer,
+  BottomContent,
+  CartIconButton,
+  CartIcon,
+  CheckoutButton,
+  CheckoutText,
+  NextIcon,
 } from './styles';
 
 import Header from '~/components/Header';
@@ -40,6 +49,17 @@ const Cart = ({
             <Text>Nenhum produto no carrinho</Text>
           </NotAvailableContainer>
         )}
+        <BottomContent>
+          <CartIconButton onPress={onPressBack}>
+            <CartIcon />
+          </CartIconButton>
+          {!!items.length && (
+            <CheckoutButton>
+              <CheckoutText>Realizar Pedido</CheckoutText>
+              <NextIcon />
+            </CheckoutButton>
+          )}
+        </BottomContent>
       </Content>
     </Container>
   );
