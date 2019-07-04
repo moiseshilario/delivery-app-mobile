@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { menuTypes } from '~/services/menuTypes';
-import { navigate } from '~/services/navigation';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as MenuActions } from '../../store/ducks/menu';
 import { Actions as CartActions } from '../../store/ducks/cart';
-import { ToastActionsCreators } from 'react-native-redux-toast';
 
 import { Text, ActivityIndicator } from 'react-native';
 import {

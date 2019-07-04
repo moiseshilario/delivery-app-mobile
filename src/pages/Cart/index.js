@@ -32,6 +32,8 @@ const Cart = ({
 
   const onPressBack = () => navigation.pop();
 
+  const onPressCheckout = () => navigation.navigate('Checkout');
+
   return (
     <Container>
       <Header title="Carrinho" onPressBack={onPressBack} cartPrice={total} />
@@ -54,7 +56,7 @@ const Cart = ({
             <CartIcon />
           </CartIconButton>
           {!!items.length && (
-            <CheckoutButton>
+            <CheckoutButton onPress={onPressCheckout}>
               <CheckoutText>Realizar Pedido</CheckoutText>
               <NextIcon />
             </CheckoutButton>

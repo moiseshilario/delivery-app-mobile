@@ -14,6 +14,9 @@ export const Types = {
   SET_ORDER_ID: 'cart/SET_ORDER_ID',
   SET_ITEMS: 'cart/SET_ITEMS',
 
+  CONFIRM_ORDER_REQUEST: 'cart/CONFIRM_ORDER_REQUEST',
+  CONFIRM_ORDER_SUCCESS: 'cart/CONFIRM_ORDER_SUCCESS',
+
   INIT_CHECK_SUCCESS: 'cart/INIT_CHECK_SUCCESS',
 
   ERROR: 'cart/ERROR',
@@ -59,6 +62,13 @@ export const Actions = {
   }),
   initCheckSuccess: () => ({
     type: Types.INIT_CHECK_SUCCESS,
+  }),
+  confirmOrderRequest: (form, total) => ({
+    type: Types.CONFIRM_ORDER_REQUEST,
+    payload: { form, total },
+  }),
+  confirmOrderSuccess: () => ({
+    type: Types.CONFIRM_ORDER_SUCCESS,
   }),
 };
 
@@ -108,6 +118,10 @@ export default function menu(state = INITIAL_STATE, { type, payload }) {
       return { ...state, loading: true };
     case Types.REMOVE_ITEM_SUCCESS:
       return { ...state, items: state.items.filter(item => item.id !== payload.itemId) };
+    case Types.CONFIRM_ORDER_REQUEST:
+      return { ...state, loading: true };
+    case Types.CONFIRM_ORDER_SUCCESS:
+      return { ...INITIAL_STATE };
     case Types.ERROR:
       return { ...state, loading: false };
     default:

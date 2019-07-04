@@ -21,7 +21,7 @@ const Header = ({ title, onPressBack, cartPrice = null }) => (
           </TouchableOpacity>
           <Title>{title}</Title>
         </LeftContainer>
-        {cartPrice && <CartPrice>{`R$${cartPrice.toFixed(2)}`}</CartPrice>}
+        {!!cartPrice && <CartPrice>{`R$${cartPrice.toFixed(2)}`}</CartPrice>}
       </HeaderContent>
     </Container>
   </Fragment>
