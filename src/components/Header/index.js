@@ -21,7 +21,7 @@ const Header = ({ title, onPressBack, cartPrice = null }) => (
           </TouchableOpacity>
           <Title>{title}</Title>
         </LeftContainer>
-        {cartPrice && <CartPrice>{`R$${cartPrice}`}</CartPrice>}
+        {cartPrice && <CartPrice>{`R$${cartPrice.toFixed(2)}`}</CartPrice>}
       </HeaderContent>
     </Container>
   </Fragment>
@@ -29,7 +29,7 @@ const Header = ({ title, onPressBack, cartPrice = null }) => (
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  cartPrice: PropTypes.string,
+  cartPrice: PropTypes.number,
   onPressBack: PropTypes.func.isRequired,
 };
 
