@@ -2,20 +2,22 @@ import { call, put } from 'redux-saga/effects';
 import api from '~/services/api';
 import { ToastActionsCreators } from 'react-native-redux-toast';
 import { navigate } from '~/services/navigation';
-import { getItemAsync, setItemAsync } from '~/services/asyncStorage';
+// eslint-disable-next-line no-unused-vars
+import { getItemAsync, setItemAsync, clearAsync } from '~/services/asyncStorage';
 
 import { Actions as AuthActions } from '../ducks/auth';
 
-import { initCart } from './cart';
+import { loadCart } from './cart';
 
 export function* init() {
+  // clearAsync(); // Clean storage (logout)
   const token = yield call(getItemAsync, '@DeliveryApp:token');
   let user = yield call(getItemAsync, '@DeliveryApp:user');
 
   if (token && user) {
     user = JSON.parse(user);
     yield put(AuthActions.signInSuccess({ user, token }));
-    yield call(initCart);
+    yield call(loadCart);
   }
 
   yield put(AuthActions.initCheckSuccess());

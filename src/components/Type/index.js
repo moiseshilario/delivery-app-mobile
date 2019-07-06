@@ -1,7 +1,6 @@
 import React from 'react';
 import PropType from 'prop-types';
 import { imagesURL } from '~/services/api';
-import { getTypeImage } from '~/services/images';
 
 import {
   Container, Button, Image, Title,

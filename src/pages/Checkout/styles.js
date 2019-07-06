@@ -28,6 +28,7 @@ export const Input = styled.TextInput.attrs({
 `;
 
 export const ObservationInput = styled(Input).attrs({
+  autocorrect: false,
   textAlignVertical: 'top',
 })`
   height: 100px;

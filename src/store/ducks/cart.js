@@ -22,6 +22,8 @@ export const Types = {
   GET_ORDERS_REQUEST: 'cart/GET_ORDERS_REQUEST',
   GET_ORDERS_SUCCESS: 'cart/GET_ORDER_SSUCCESS',
 
+  LOAD_CART: 'cart/LOAD_CART',
+
   ERROR: 'cart/ERROR',
 };
 
@@ -79,6 +81,9 @@ export const Actions = {
   getOrdersSuccess: data => ({
     type: Types.GET_ORDERS_SUCCESS,
     payload: { data },
+  }),
+  loadCart: () => ({
+    type: Types.LOAD_CART,
   }),
 };
 

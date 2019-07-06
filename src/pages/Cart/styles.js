@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
 
 export const Container = styled.View`
@@ -29,6 +30,7 @@ export const BottomContent = styled.View`
   flex-direction: row;
   padding: 10px 20px;
   justify-content: space-between;
+  padding-bottom: ${getBottomSpace() + 10}px;
 `;
 
 export const CartIconButton = styled.TouchableOpacity`

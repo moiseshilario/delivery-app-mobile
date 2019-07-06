@@ -10,7 +10,7 @@ import { Types as CartTypes } from '../ducks/cart';
 import { signIn, init, signUp } from './auth';
 import { loadMenu } from './menu';
 import {
-  addItem, removeItem, confirmOrder, getOrders,
+  addItem, removeItem, confirmOrder, getOrders, loadCart,
 } from './cart';
 
 export default function* rootSaga() {
@@ -23,5 +23,6 @@ export default function* rootSaga() {
     takeLatest(CartTypes.REMOVE_ITEM_REQUEST, removeItem),
     takeLatest(CartTypes.CONFIRM_ORDER_REQUEST, confirmOrder),
     takeLatest(CartTypes.GET_ORDERS_REQUEST, getOrders),
+    takeLatest(CartTypes.LOAD_CART, loadCart),
   ]);
 }

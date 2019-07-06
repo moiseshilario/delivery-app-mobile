@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as CheckoutActions } from '../../store/ducks/cart';
 
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import {
   Container,
   Content,

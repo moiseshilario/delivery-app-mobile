@@ -8,7 +8,7 @@ import { Actions as CartActions } from '../ducks/cart';
 
 import { getUser, getOrderId, getCurrentItem } from '../selectors/index';
 
-export function* initCart() {
+export function* loadCart() {
   const { id: userId } = yield select(getUser);
 
   if (userId) {

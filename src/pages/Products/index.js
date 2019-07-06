@@ -14,11 +14,12 @@ import ProductHeader from '~/components/ProductHeader';
 import Product from '~/components/Product';
 
 const Products = ({
-  products, cartItems, menuRequest, addStep,
+  products, cartItems, menuRequest, addStep, loadCart,
 }) => {
   useEffect(() => {
     const getProducts = async () => {
       await menuRequest(menuTypes.PRODUCTS);
+      await loadCart();
     };
     getProducts();
   }, []);
@@ -59,6 +60,7 @@ Products.propTypes = {
   cartItems: PropTypes.number.isRequired,
   menuRequest: PropTypes.func.isRequired,
   addStep: PropTypes.func.isRequired,
+  loadCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

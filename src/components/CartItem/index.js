@@ -36,10 +36,16 @@ const CartItem = ({ item, onPressDelete }) => (
 
 CartItem.propTypes = {
   item: PropType.shape({
-    // image: PropType.string,
-    // name: PropType.string,
-    // description: PropType.string,
-    // preparation_time: PropType.number,
+    type: PropType.shape({
+      image: PropType.string,
+      name: PropType.string,
+    }),
+    size: PropType.shape({
+      description: PropType.string,
+    }),
+    price: PropType.shape({
+      price: PropType.number,
+    }),
   }).isRequired,
   onPressDelete: PropType.func.isRequired,
 };

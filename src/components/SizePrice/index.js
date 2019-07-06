@@ -1,9 +1,8 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { imagesURL } from '~/services/api';
-import { getTypeImage } from '~/services/images';
 
-import { Image, View } from 'react-native';
+import { Image } from 'react-native';
 import {
   Container, Button, ImageContainer, SizeImage, Title, Price,
 } from './styles';
