@@ -1,8 +1,56 @@
-# React Native Boilerplate
+# Delivery App Mobile
 
-This boilerplate was built based on the Rocketseat Bootcamp classes.
+Food delivery app built with React Native
 
-## Features
+## Connected Projects
+- Web: https://github.com/moiseshilario/delivery-app-web
+- Back: https://github.com/moiseshilario/delivery-app-back
+
+## Setup
+
+```bash
+yarn
+```
+
+or
+
+```bash
+npm i
+```
+
+### Linking
+
+You need to link some libs to make it work properly
+
+```
+react-native link
+
+react-native-gesture-handler
+
+react-native link react-native-vector-icons
+
+react-native link @react-native-community/async-storage
+
+react-native link react-native-linear-gradient
+```
+
+## Running
+
+* iOS:
+  * Yarn: `yarn ios`
+  * npm: `npm run ios`
+
+* Android:
+  * Yarn: `yarn android`
+  * npm: `npm run android`
+
+* Later builds:
+  * Yarn: `yarn start`
+  * npm: `npm run start`
+
+---
+
+## Stack
 
 - redux
 - redux-saga
@@ -15,12 +63,3 @@ This boilerplate was built based on the Rocketseat Bootcamp classes.
 - editorconfig
 - eslint
 - babel-plugin-root-import
-
-## How to use
-
-```
-git clone https://github.com/lcnogueira/react-native-boilerplate.git
-cd react-native-boilerplate
-yarn install
-react-native run-android (or run-ios)
-```

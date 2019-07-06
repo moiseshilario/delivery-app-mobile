@@ -1,16 +1,19 @@
 import '~/config/ReactotronConfig';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Provider } from 'react-redux';
+import { Toast } from 'react-native-redux-toast';
 
 import store from '~/store';
 
-import Routes from '~/routes';
-import { setNavigator } from './services/navigation';
+import App from './App';
 
-const App = () => (
+const Root = () => (
   <Provider store={store}>
-    <Routes ref={setNavigator} />
+    <Fragment>
+      <App />
+      <Toast messageStyle={{ color: 'white' }} />
+    </Fragment>
   </Provider>
 );
 
-export default App;
+export default Root;
