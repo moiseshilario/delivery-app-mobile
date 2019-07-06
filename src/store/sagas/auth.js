@@ -9,17 +9,16 @@ import { Actions as AuthActions } from '../ducks/auth';
 import { initCart } from './cart';
 
 export function* init() {
-  // AsyncStorage.clear();
   const token = yield call(getItemAsync, '@DeliveryApp:token');
   let user = yield call(getItemAsync, '@DeliveryApp:user');
 
   if (token && user) {
     user = JSON.parse(user);
     yield put(AuthActions.signInSuccess({ user, token }));
+    yield call(initCart);
   }
 
   yield put(AuthActions.initCheckSuccess());
-  yield call(initCart);
 }
 
 export function* signIn(action) {

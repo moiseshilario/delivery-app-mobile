@@ -1,6 +1,7 @@
 import { call, put, select } from 'redux-saga/effects';
 import api from '~/services/api';
 import { navigate } from '~/services/navigation';
+import { clearAsync } from '~/services/asyncStorage';
 
 import { ToastActionsCreators } from 'react-native-redux-toast';
 import { Actions as CartActions } from '../ducks/cart';
@@ -8,7 +9,6 @@ import { Actions as CartActions } from '../ducks/cart';
 import { getUser, getOrderId, getCurrentItem } from '../selectors/index';
 
 export function* initCart() {
-  // clearAsync();
   const { id: userId } = yield select(getUser);
 
   if (userId) {
@@ -26,6 +26,9 @@ export function* initCart() {
     } catch (e) {
       yield put(ToastActionsCreators.displayError('Não foi possível carregar carrinho'));
     }
+  } else {
+    clearAsync();
+    navigate('SignIn');
   }
 
   yield put(CartActions.initCheckSuccess());
