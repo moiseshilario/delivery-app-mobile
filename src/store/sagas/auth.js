@@ -7,8 +7,6 @@ import { getItemAsync, setItemAsync, clearAsync } from '~/services/asyncStorage'
 
 import { Actions as AuthActions } from '../ducks/auth';
 
-import { loadCart } from './cart';
-
 export function* init() {
   // clearAsync(); // Clean storage (logout)
   const token = yield call(getItemAsync, '@DeliveryApp:token');
@@ -17,7 +15,6 @@ export function* init() {
   if (token && user) {
     user = JSON.parse(user);
     yield put(AuthActions.signInSuccess({ user, token }));
-    yield call(loadCart);
   }
 
   yield put(AuthActions.initCheckSuccess());

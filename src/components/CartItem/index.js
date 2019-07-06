@@ -43,9 +43,7 @@ CartItem.propTypes = {
     size: PropType.shape({
       description: PropType.string,
     }),
-    price: PropType.shape({
-      price: PropType.number,
-    }),
+    price: PropType.number,
   }).isRequired,
   onPressDelete: PropType.func.isRequired,
 };
