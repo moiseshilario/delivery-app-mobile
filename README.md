@@ -2,6 +2,10 @@
 
 Food delivery app built with React Native
 
+<img src="https://i.imgur.com/KG1NYlK.jpg" alt="login screen" width="230" height="400" /> <img src="https://i.imgur.com/6inZic1.png" alt="products screen" width="230" height="400" /> <img src="https://i.imgur.com/DftO5K4.png" alt="flavors screen" width="230" height="400" />
+
+<img src="https://i.imgur.com/fEzavQR.png" alt="size screen" width="230" height="400" /> <img src="https://i.imgur.com/2qQP8nk.png" alt="cart screen" width="230" height="400" /> <img src="https://i.imgur.com/odLQA3q.png" alt="order screen" width="230" height="400" />
+
 ## Connected Projects
 - Web: https://github.com/moiseshilario/delivery-app-web
 - Back: https://github.com/moiseshilario/delivery-app-back
