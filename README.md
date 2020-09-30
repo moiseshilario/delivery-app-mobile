@@ -1,6 +1,6 @@
 # Delivery App Mobile
 
-Food delivery app built with React Native
+An Amazing Food delivery app built with React Native
 
 <img src="https://i.imgur.com/KG1NYlK.jpg" alt="login screen" width="230" height="400" /> <img src="https://i.imgur.com/6inZic1.png" alt="products screen" width="230" height="400" /> <img src="https://i.imgur.com/DftO5K4.png" alt="flavors screen" width="230" height="400" />
 
@@ -24,7 +24,7 @@ npm i
 
 ### Linking
 
-You need to link some libs to make it work properly
+You need to link some libraries to make it work properly
 
 ```
 react-native link
